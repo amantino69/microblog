@@ -1,4 +1,4 @@
-{%extends "base.html" %}
+<!-- {%extends "base.html" %}
 
 {% block conteudo %}
 <h2>Hello {{nome}}</h2>
@@ -6,4 +6,178 @@
     Profissão = {{dados.profissao}} <br>
     Canal = {{dados.Canal}}
 </p>
+{% endblock %} -->
+
+
+{% extends "base.html" %}
+
+{% block titulo %}
+Index
+{% endblock %}
+
+{% block menu %}
+<!-- <li class="mt">
+  <a class="active" href="{{ url_for('webui.index') }}">
+    <i class="fa fa-dashboard"></i>
+    <span class="span">Processar NIP</span>
+  </a>
+</li>
+<li>
+  <a href="{{url_for('webui.responder') }}">
+    <i class="fa fa-envelope"></i>
+    <span>Responder </span>
+    <span class="label label-theme pull-right mail-info">2</span>
+  </a>
+</li>
+
+<li>
+  <a href="{{url_for('webui.saida') }}">
+    <i class="fa fa-envelope"></i>
+    <span>Resumo </span>
+    <span class="label label-theme pull-right mail-info">2</span>
+  </a>
+</li> -->
+
+
+
+
+{% endblock %}
+
+{% block content %}
+
+
+<header class="topo">
+  <img src="{{ url_for('static', filename='img/logo-campello-gomes-advogados.png')}}" alt="Logo" class="img" />
+  <h1 class="titulo-principal">NIPON</h1> <!-- Titulo do sistema -->
+  <h2 class="titulo-secundario">Acelerador de Resposta NIP</h2> <!-- Subtitulo do sistema -->
+
+</header>
+
+
+
+
+
+<section>
+
+  <link href="{{ url_for('static', filename='css/montar_agenda.css') }}" rel="stylesheet" />
+
+  <div class="container">
+
+    <form action="{{url_for('webui.index')}}" method="POST" class="form">
+
+      <div class="box-load" style="display: none;">
+        <div class="loader" id="loader">
+
+        </div>
+      </div>
+
+      <div class="div-load" id="div-load" style="display: none;">
+        <div class="loader" id="loader"></div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="label" for="operadora">Operadora </label>
+        <select name="operadora" id="operadora">
+          <option value="PREMIUM SAÚDE">PREMIUM SAÚDE</option>
+          <!-- <option value="YOU ASSISTÊNCIA MÉDICA ">YOU ASSISTÊNCIA MÉDICA</option>
+          <option value="SANTA CASA">SANTA CASA</option>
+          <option value="YOU ODONTO">YOU ODONTO</option>
+          <option value="PERSONAL CARE">NEXTEL</option> -->
+        </select>
+      </div>
+
+      <div>
+        <label class="label" for="dias">Dias úteis para Responder</label>
+        <input type="number" name="dias" id="dias" min="1" max="4" value="1">
+
+      </div>
+      <div>
+        <button class="btn btn-primary" type="submit" onclick="loading()">Enviar</button>
+      </div>
+
+
+    </form>
+
+
+    <script>
+      function loading() {
+        document.getElementsByClassName("box-load")[0].style.display = "flex";
+      }
+      function hide_loading() {
+        document.getElementsByClassName("box-load")[0].style.display = "none";
+      }
+
+
+    </script>
+</section>
+<style>
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+  }
+
+  .topo {
+    background-color: rgba(33, 6, 153, 0.527);
+    position: relative;
+    padding: 2rem;
+  }
+
+  .img {
+    position: absolute;
+    max-width: 25%;
+    top: 30%;
+    left: 30px;
+    color: blue;
+    z-index: 1;
+  }
+
+  .titulo-principal,
+  p {
+    font-size: "Open Sans Condensed", "Arial", sans-serif;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 50%;
+    font: rgb(9, 15, 4);
+    z-index: 3;
+    color: rgb(255, 255, 255);
+
+  }
+
+  .titulo-secundario,
+  p {
+    font-size: "Open Sans Condensed", "Arial", sans-serif;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 50%;
+    font: rgb(13, 14, 12);
+    color: white;
+  }
+
+  .label,
+  p {
+    font-size: "Open Sans Condensed", "Arial", sans-serif;
+    text-align: right;
+    margin: 0 auto;
+    max-width: 50%;
+    font: rgb(13, 14, 12);
+    color: rgb(12, 1, 1);
+    padding: 2px;
+  }
+
+  .span,
+  p {
+    font-size: "Open Sans Condensed", "Arial", sans-serif;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 50%;
+    font: rgb(13, 14, 12);
+    color: rgb(12, 1, 1);
+    padding: 2px;
+  }
+</style>
 {% endblock %}
